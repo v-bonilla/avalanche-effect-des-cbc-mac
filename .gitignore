@@ -14,4 +14,4 @@ Coco.jar
 *.frame
 
 ### Binaries ###
-
+/production/
