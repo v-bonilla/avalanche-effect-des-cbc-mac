@@ -1,0 +1,17 @@
+### Eclipse ###
+.classpath
+.project
+.settings
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Coco/R files ###
+Coco.jar
+*.frame
+
+### Binaries ###
+
