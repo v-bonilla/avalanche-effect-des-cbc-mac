@@ -1,7 +1,6 @@
 package main;
 
 import cipher.DESCBCMAC;
-import org.bouncycastle.util.encoders.Hex;
 
 public class Main {
 
@@ -14,10 +13,22 @@ public class Main {
 //		System.out.println("Distribucion de probabilidad para 1024 casos:");
 //		a.printHistogramPD();
 		DESCBCMAC d = new DESCBCMAC();
-		d.createRandomKey(); d.createRandomInput();
-		byte[] o = d.encode();
-		System.out.println(o.length);
-		System.out.println(Hex.encode(o));
+		d.createRandomKey();
+		d.createRandomInput();
+		byte[] key = d.getInput();
+		d.flipRandomBitInInput();
+		byte[] key2 = d.getInput();
+		System.out.println("Key 1: ");
+		printBits(key);
+		System.out.println("Key 2: ");
+		printBits(key2);
+//		System.out.println("Hamming: " + Avalanche.getHammingDistance(key, key2));
+	}
+
+	public static void printBits(byte[] bytes){
+		for (byte b : bytes){
+			System.out.println(String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0'));
+		}
 	}
 
 }

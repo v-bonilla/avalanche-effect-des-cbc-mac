@@ -1,20 +1,19 @@
 package avalanche;
 
+import cipher.DESCBCMAC;
+import org.bouncycastle.crypto.DataLengthException;
+import org.bouncycastle.crypto.InvalidCipherTextException;
+import stats.Histogram;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.Random;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-
-import cipher.DESCBCMAC;
-import org.bouncycastle.crypto.DataLengthException;
-import org.bouncycastle.crypto.InvalidCipherTextException;
-import stats.Histogram;
 
 public class Avalanche {
 	
@@ -93,14 +92,14 @@ public class Avalanche {
 	}
 
 	// Calcula la distancia de Hamming para un caso de estudio
-	public int getHammingDistance(byte[] a, byte[]b){
+	public int getHammingDistance(byte[] a, byte[] b){
 		int res = 0;
 		byte[] and = new byte[a.length];
 		for (int i = 0; i < and.length; i++)
 			 and[i] = (byte) ((a[i] & b[i]) | (~a[i] & ~b[i]));
 		for (int j = 0; j < and.length; j++){
 			for (int k = 0; k < 8; k++){
-				if ((and[j] & (1 << k)) != 1)
+				if ((and[j] & (1 << k)) == 0)
 					res++;
 			}
 		}

@@ -5,7 +5,9 @@ import org.bouncycastle.crypto.engines.DESEngine;
 import org.bouncycastle.crypto.macs.CBCBlockCipherMac;
 import org.bouncycastle.crypto.params.KeyParameter;
 
+import java.util.BitSet;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class DESCBCMAC {
 
@@ -14,7 +16,7 @@ public class DESCBCMAC {
 
     public DESCBCMAC() {}
 
-    // Recibe un array de bytes, lo cifra y devuelve el resultado como array de bytes
+    // Cifra input y devuelve el resultado como array de bytes
     public byte[] encode(){
         // El bloque de salida del algoritmo siempre es de 32 bits
         byte[]  output = new byte[4];
@@ -38,6 +40,23 @@ public class DESCBCMAC {
         // el algoritmo no especifica tamaño de bloque de entrada
         input = new byte[128];
         new Random().nextBytes(input);
+    }
+
+    public byte[] flipRandomBit(byte[] bytes){
+        BitSet bitSet = BitSet.valueOf(bytes);
+        System.out.println("Bits before flip: " + bitSet.toString());
+        int randomBit = ThreadLocalRandom.current().nextInt(0, bitSet.size() - 1);
+        bitSet.flip(randomBit);
+        System.out.println("Bits after flip: " + bitSet.toString());
+        return bitSet.toByteArray();
+    }
+
+    public void flipRandomBitInKey(){
+        setKey(flipRandomBit(key));
+    }
+
+    public void flipRandomBitInInput(){
+        setInput(flipRandomBit(input));
     }
 
     public byte[] getKey() {
