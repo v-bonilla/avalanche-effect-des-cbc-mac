@@ -5,7 +5,7 @@ import avalanche.AvalancheToInput;
 public class Main {
 
 	public static void main(String[] args) {
-		AvalancheToInput a = new AvalancheToInput();
+		AvalancheToInput a = new AvalancheToInput(100000);
 		// Muestra por pantalla los valores de la distribucion de probabilidad
 		System.out.println("Histograma:");
 		a.printHistogram();

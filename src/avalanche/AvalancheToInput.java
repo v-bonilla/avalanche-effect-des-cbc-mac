@@ -14,20 +14,20 @@ public class AvalancheToInput {
 	private byte[] key;
 
 	// Inicializa atributos y lanza el efecto avalancha
-	public AvalancheToInput() {
+	public AvalancheToInput(int muestras) {
 		descbcmac = new DESCBCMAC();
 		// Clave aleatoria de 64 bits
 		key = new byte[8];
 		new Random().nextBytes(key);
 		// Histograma. 33 elementos porque la distancia de Hamming
 		// podra tomar 33 posibles valores (el bloque de salida tiene 32 bits)
-		histogram = new Histogram(33);
-		startAvalanche();
+		histogram = new Histogram(33, muestras);
+		startAvalanche(muestras);
 	}
 
 	// Repite el efecto avalancha 1024 veces modificando la entrada en 1 bit
-	public void startAvalanche() {
-		for (int i = 0; i < 1000; i++){
+	public void startAvalanche(int n) {
+		for (int i = 0; i < n; i++){
 			byte[] input1 = createRandomInput();
 			byte[] input2 = flipRandomBit(input1);
 			avalanche(input1, input2);
