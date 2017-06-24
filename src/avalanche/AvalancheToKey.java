@@ -3,7 +3,6 @@ package avalanche;
 import cipher.DESCBCMAC;
 import stats.Histogram;
 
-import java.util.BitSet;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -55,10 +54,11 @@ public class AvalancheToKey {
     // Complementa un bit aleatorio en un array de bytes y devuelve el array de bytes
     // con el bit cambiado
     public byte[] flipRandomBit(byte[] bytes){
-        BitSet bitSet = BitSet.valueOf(bytes);
-        int randomBit = ThreadLocalRandom.current().nextInt(0, bitSet.size() - 1);
-        bitSet.flip(randomBit);
-        return bitSet.toByteArray();
+        byte[] res = bytes.clone();
+        int randomBit = ThreadLocalRandom.current().nextInt(0, 7);
+        int randomByte = ThreadLocalRandom.current().nextInt(0, 7);
+        res[randomByte] ^= 1 << randomBit;
+        return res;
     }
 
 

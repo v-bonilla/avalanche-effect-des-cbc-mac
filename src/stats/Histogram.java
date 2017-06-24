@@ -28,7 +28,7 @@ public class Histogram {
 	// Muestra por pantalla los valores del efecto avalancha
 	public void print() {
 		for (int i = 0; i < histogram.length; i++){
-			System.out.println(i + ": " + histogram[i]);
+			System.out.println(histogram[i]);
 		}
 		media();
 		System.out.println("Media: " + getMedia());
