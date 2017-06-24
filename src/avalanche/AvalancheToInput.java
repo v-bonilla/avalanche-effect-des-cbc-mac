@@ -19,8 +19,9 @@ public class AvalancheToInput {
 		// Clave aleatoria de 64 bits
 		key = new byte[8];
 		new Random().nextBytes(key);
-		// Histograma
-		histogram = new Histogram();
+		// Histograma. 33 elementos porque la distancia de Hamming
+		// podra tomar 33 posibles valores (el bloque de salida tiene 32 bits)
+		histogram = new Histogram(33);
 		startAvalanche();
 	}
 
@@ -58,8 +59,7 @@ public class AvalancheToInput {
 		byte[] output1 = descbcmac.encode(key, input1);
 		byte[] output2 = descbcmac.encode(key, input2);
 		int hD = getHammingDistance(output1, output2);
-//		histogram.addDataAE(getAvalancheEffect(hD, (output1.length * 8)));
-//		histogram.addDataPD(getProbability(hD,(output1.length * 8)));
+		histogram.addData(hD);
 	}
 
 	// Calcula la distancia de Hamming para un caso de estudio
@@ -80,12 +80,7 @@ public class AvalancheToInput {
 	// Metodos para mostrar por pantalla los valores del histograma
 	// Valores del efecto avalancha
 	public void printHistogramAE(){
-		histogram.printAE();
-	}
-	
-	// Valores dela distribucion de probabilidad
-	public void printHistogramPD(){
-		histogram.printPD();
+		histogram.print();
 	}
 
 }
