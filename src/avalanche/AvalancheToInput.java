@@ -79,7 +79,7 @@ public class AvalancheToInput {
 
 	// Metodos para mostrar por pantalla los valores del histograma
 	// Valores del efecto avalancha
-	public void printHistogramAE(){
+	public void printHistogram(){
 		histogram.print();
 	}
 
