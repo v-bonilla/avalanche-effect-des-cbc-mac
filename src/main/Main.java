@@ -1,14 +1,31 @@
 package main;
 
 import avalanche.AvalancheToInput;
+import avalanche.AvalancheToKey;
 
 public class Main {
 
 	public static void main(String[] args) {
-		AvalancheToInput a = new AvalancheToInput(100000);
-		// Muestra por pantalla los valores de la distribucion de probabilidad
-		System.out.println("Histograma:");
-		a.printHistogram();
+//		AvalancheToInput a1000 = new AvalancheToInput(1000);
+//		System.out.println("Histograma a1000:");
+//		a1000.printHistogram();
+//		AvalancheToInput a100000 = new AvalancheToInput(100000);
+//		System.out.println("Histograma a100000:");
+//		a100000.printHistogram();
+//		AvalancheToInput a1000000 = new AvalancheToInput(1000000);
+//		System.out.println("Histograma a1000000:");
+//		a1000000.printHistogram();
+//		AvalancheToInput aExtreme = new AvalancheToInput(1000000000);
+//		System.out.println("Histograma extreme:");
+//		aExtreme.printHistogram();
+
+		AvalancheToInput avalancheToInput = new AvalancheToInput(100000);
+		System.out.println("Histograma avalanche to input:");
+		avalancheToInput.printHistogram();
+
+		AvalancheToKey avalancheToKey = new AvalancheToKey(100000);
+		System.out.println("Histogram avalanche to key:");
+		avalancheToKey.printHistogram();
 	}
 
 	public static void printBits(byte[] bytes){

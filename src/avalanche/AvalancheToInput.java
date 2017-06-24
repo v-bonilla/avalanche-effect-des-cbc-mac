@@ -25,7 +25,7 @@ public class AvalancheToInput {
 		startAvalanche(muestras);
 	}
 
-	// Repite el efecto avalancha 1024 veces modificando la entrada en 1 bit
+	// Repite el efecto avalancha n veces modificando la entrada en 1 bit aleatorio
 	public void startAvalanche(int n) {
 		for (int i = 0; i < n; i++){
 			byte[] input1 = createRandomInput();
@@ -35,7 +35,7 @@ public class AvalancheToInput {
 	}
 
 	public byte[] createRandomInput(){
-		// Crea una entrada aleatoria de 128 bits porque
+		// Crea una entrada aleatoria de 128 bytes porque
 		// el algoritmo no especifica tamaño de bloque de entrada
 		byte[] input = new byte[128];
 		new Random().nextBytes(input);
@@ -78,7 +78,6 @@ public class AvalancheToInput {
 	}
 
 	// Metodos para mostrar por pantalla los valores del histograma
-	// Valores del efecto avalancha
 	public void printHistogram(){
 		histogram.print();
 	}
