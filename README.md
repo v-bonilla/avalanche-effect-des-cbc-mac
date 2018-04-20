@@ -1,3 +1,5 @@
-Práctica efecto avalancha sobre el algoritmo DES CBC MAC para SEGTI en ETSIInf UPM.
+# Project for "Security in Information Technologies" at ETSIInf - UPM
 
-Autor: Víctor Bonilla
+It consists in apply avalanche effect to DES CBC MAC algorithm.
+
+Author: Víctor Bonilla
